@@ -7,6 +7,7 @@ import { HapticTab } from "@/components/HapticTab";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,7 +16,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
+        headerShown: false, // Default to no header, but override per screen
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
@@ -30,7 +31,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          // Ionicons has "home", "home-outline", etc.
+          headerShown: true, // Enable the header for this screen
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" size={28} color={color} />
           ),
@@ -40,9 +41,9 @@ export default function TabLayout() {
         name="pregame/index"
         options={{
           title: "Pregame",
-          // Ionicons uses "settings", "settings-outline" instead of "gear"
+          headerShown: true, // Enable the header for this screen
           tabBarIcon: ({ color }) => (
-            <Ionicons name="settings" size={28} color={color} />
+            <FontAwesome name="list" size={28} color={color} />
           ),
         }}
       />
@@ -50,9 +51,9 @@ export default function TabLayout() {
         name="auton/index"
         options={{
           title: "Autonomous",
-          // Ionicons doesn't have "robot", so let's use "logo-android"
+          headerShown: true, // Enable the header for this screen
           tabBarIcon: ({ color }) => (
-            <Ionicons name="logo-android" size={28} color={color} />
+            <FontAwesome5 name="robot" size={28} color={color} />
           ),
         }}
       />
@@ -60,7 +61,7 @@ export default function TabLayout() {
         name="teleop/index"
         options={{
           title: "Teleop",
-          // Ionicons has "game-controller", "game-controller-outline"
+          headerShown: true, // Enable the header for this screen
           tabBarIcon: ({ color }) => (
             <Ionicons name="game-controller" size={28} color={color} />
           ),
@@ -70,7 +71,7 @@ export default function TabLayout() {
         name="endgame/index"
         options={{
           title: "Endgame",
-          // Ionicons doesn't have "flag.checkered", so let's just use "flag"
+          headerShown: true, // Enable the header for this screen
           tabBarIcon: ({ color }) => (
             <Ionicons name="flag" size={28} color={color} />
           ),
